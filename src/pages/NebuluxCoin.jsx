@@ -258,7 +258,7 @@ export default function NebuluxCoin() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl font-black mb-4 text-white">
-            <span className="text-4xl"> <img src={lOGO} width={100} height={100} alt="Z Coins Logo" /></span> Z Coins
+            <span className="text-4xl"> <img src={lOGO} width={100} height={100} alt="XPFI-Coin  Logo" /></span> XPFI-Coin 
           </h1>
           <p className="text-xl text-gray-300 font-light">
             Explore the cosmos of cryptocurrency
@@ -345,7 +345,7 @@ export default function NebuluxCoin() {
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 onClick={() => checkValidPurchaseAmount()}
               >
-                🚀 Purchase Z Coins
+                🚀 Purchase XPFI-Coin 
               </button>
             </div>
           </div>
