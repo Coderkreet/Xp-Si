@@ -146,7 +146,7 @@ const HeroSection = () => {
             <div className="w-2/3 text-left">
               <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[8rem] font-black mb-6 relative">
                 <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text animate-pulse">
-                  Z-Coin
+                  XPFI-Coin 
                 </span>
                 {/* Glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-blue-500/20 to-purple-600/20 blur-3xl -z-10"></div>
@@ -176,24 +176,24 @@ const HeroSection = () => {
                     <span className="text-white font-bold text-xl">Z</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white">Z-Coin Platform</h3>
+                    <h3 className="text-2xl font-bold text-white">XPFI-Coin  Platform</h3>
                     <p className="text-cyan-300 text-sm">CryptoZ Investment Plan</p>
                   </div>
                 </div>
                 
                 <p className="text-gray-200 text-justify  md:text-left text-lg sm:text-xl leading-relaxed tracking-wide">
-                  {/* In the fast-paced world of digital finance, <strong className="text-cyan-400">Z-Coin</strong> emerges as a next-generation investment solution designed for both beginners and seasoned investors. Built under the CryptoZ Investment Plan, Z-Coin is more than just a cryptocurrency — it's a 
+                  {/* In the fast-paced world of digital finance, <strong className="text-cyan-400">XPFI-Coin </strong> emerges as a next-generation investment solution designed for both beginners and seasoned investors. Built under the CryptoZ Investment Plan, XPFI-Coin  is more than just a cryptocurrency — it's a 
                   <strong className="text-purple-400"> secure, innovative, and community-driven</strong> digital asset that empowers users to grow their wealth through smart, transparent, and decentralized investments. */}
-                  ZCOIN is a next-generation decentralized digital asset powering a comprehensive Web3
-ecosystem. From ultra-fast, low-fee transactions to full DeFi integration, ZCOIN offers users the
+                  XPFI-Coin is a next-generation decentralized digital asset powering a comprehensive Web3
+ecosystem. From ultra-fast, low-fee transactions to full DeFi integration, XPFI-Coin offers users the
 freedom to lend, stake, farm, and earn in a fully permissionless environment. It fuels a dynamic
 Play-to-Earn (P2E) gaming economy, where users earn real value through immersive
-experiences. ZCOIN also supports community-driven governance, giving token holders real
+experiences. XPFI-Coin also supports community-driven governance, giving token holders real
 influence over future developments. Integrated with the Metaverse and NFT infrastructure,
-ZCOIN enables ownership of digital assets, in-game items, and virtual land with verifiable
-scarcity. Bridging the gap between digital and physical, ZCOIN introduces tokenized Real-World
+XPFI-Coin enables ownership of digital assets, in-game items, and virtual land with verifiable
+scarcity. Bridging the gap between digital and physical, XPFI-Coin introduces tokenized Real-World
 Assets (RWAs), allowing users to invest in tangible value through blockchain. Whether you’re a
-gamer, investor, creator, or builder — ZCOIN is your gateway to the decentralized future.
+gamer, investor, creator, or builder — XPFI-Coin is your gateway to the decentralized future.
                 </p>
               </div>
             </div>

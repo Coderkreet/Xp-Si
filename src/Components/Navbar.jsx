@@ -15,7 +15,7 @@ const Navbar = ({ isExpanded, setIsExpanded }) => {
   };
 
   return (
-    <div className="bg-gray-800 border-b border-gray-700">
+    <div className="bg-black/30 backdrop-blur-md border-b border-gray-700">
       <div className="px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Mobile Menu Button */}
