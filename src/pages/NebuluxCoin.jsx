@@ -67,6 +67,8 @@ export default function NebuluxCoin() {
     setPurchaseError(null);
     setPurchaseSuccess(null);
 
+  console.log("Purchase data:", data);
+
     if (!amount || isNaN(amount) || Number(amount) <= 0) {
       setPurchaseError("Please enter a valid amount.");
       setPurchaseLoading(false);
@@ -238,11 +240,11 @@ export default function NebuluxCoin() {
   };
 
   const checkValidPurchaseAmount = () => {
-    if (amount === "" || isNaN(amount) || Number(amount) <= 0) {
+    if (amount === "" || isNaN(amount) || Number(amount) < 1) {
       Swal.fire({
         icon: "error",
         title: "Invalid Amount",
-        text: "Minimum purchase amount is $100. Please enter a valid amount.",
+        text: "Minimum purchase amount is $10. Please enter a valid amount.",
         confirmButtonText: "OK",
         timer: 5000,
         showConfirmButton: true,
@@ -279,7 +281,7 @@ export default function NebuluxCoin() {
                 {(nebuluxData.supply + nebuluxData.sold).toLocaleString()}</div>
               <div className="text-sm text-gray-400">Total Supply</div>
             </div>
-            {/* <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
+            <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
               <div className="text-3xl mb-2">⭐</div>
               <div className="text-2xl font-bold text-yellow-300">{(nebuluxData.supply).toLocaleString()}</div>
               <div className="text-sm text-gray-400">Coins Left</div>
@@ -288,7 +290,7 @@ export default function NebuluxCoin() {
               <div className="text-3xl mb-2">🔥</div>
               <div className="text-2xl font-bold text-green-300">{nebuluxData.sold.toLocaleString()}</div>
               <div className="text-sm text-gray-400">Coins Sold</div>
-            </div> */}
+            </div>
           </div>
         )}
 
@@ -322,7 +324,7 @@ export default function NebuluxCoin() {
                   </div>
                   {amount && (
                     <div className="mt-2 text-base text-gray-400">
-                      ≈ {(Number(amount) * (nebuluxData?.price || 1)).toFixed(2)} Z Coin
+                      ≈ {((Number(amount)/nebuluxData?.price || 1)).toFixed(2)} XPFI COIN
                     </div>
                   )}
                 </div>
@@ -461,7 +463,7 @@ export default function NebuluxCoin() {
                   <img src={MainContent.appLogo} alt="App Logo" className="w-full h-full object-contain" />
                 </div>
                 <USDTPaymentMain
-                  amount={amount * nebuluxData.price}
+                  amount={amount}
                   walletType={walletType}
                   onSuccess={handlePurchase}
                   onFailure={() => setShowPaymentModal(false)}
