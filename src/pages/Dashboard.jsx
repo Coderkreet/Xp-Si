@@ -265,7 +265,8 @@ const Dashboard = () => {
 
   const copyReferralCode = async () => {
     try {
-      await navigator.clipboard.writeText(user?.data?.referralLink || '');
+      const referralURL = `${window.location.origin}/register?referral=${user?.data?.referralLink}`;
+      await navigator.clipboard.writeText(referralURL);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -274,19 +275,17 @@ const Dashboard = () => {
   };
 
   const shareReferralLink = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Join me on CryptoMiner',
-          text: `Use my referral code: ${user?.data?.referralLink}`,
-          url: window.location.origin + '/refer-and-earn/register?referral=' + user?.data?.referralLink,
-        });
-      } catch (err) {
-        console.log('Error sharing:', err);
-      }
-    } else {
-      copyReferralCode();
-    }
+    const referralURL = `${window.location.origin}/register?referral=${user?.data?.referralLink}`;
+    await navigator.clipboard.writeText(referralURL);
+    setCopied(true);
+    Swal.fire({
+      title: 'Referral Link Copied!',
+      text: 'Share it with your friends to earn rewards!',
+      icon: 'success',
+      confirmButtonText: 'OK',
+      timer: 3000,
+      timerProgressBar: true,
+    });
   };
 
   if (loading) {
@@ -508,13 +507,13 @@ const Dashboard = () => {
                   </div> */}
                 </div>
 
-                {/* <button
+                <button
                   onClick={shareReferralLink}
                   className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white py-3 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <Share2 className="w-4 h-4" />
                   <span>Share Referral Link</span>
-                </button> */}
+                </button>
               </div>
             </div>
 

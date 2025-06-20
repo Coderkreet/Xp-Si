@@ -240,7 +240,7 @@ export default function NebuluxCoin() {
   };
 
   const checkValidPurchaseAmount = () => {
-    if (amount === "" || isNaN(amount) || Number(amount) < 1) {
+    if (amount === "" || isNaN(amount) || Number(amount) * nebuluxData?.price < 1) {
       Swal.fire({
         icon: "error",
         title: "Invalid Amount",
@@ -269,19 +269,19 @@ export default function NebuluxCoin() {
 
         {/* Stats Overview */}
         {nebuluxData && (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
             <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
               <div className="text-3xl mb-2">💰</div>
-              <div className="text-2xl font-bold text-purple-300">${(nebuluxData.price || 0).toFixed(2)}</div>
+              <div className="text-2xl font-bold text-purple-300">${(nebuluxData.price || 0).toFixed(4)}</div>
               <div className="text-sm text-gray-400">Current Price</div>
             </div>
             <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
               <div className="text-3xl mb-2">📊</div>
-              <div className="text-2xl font-bold text-blue-300">
+              <div className="text-2xl font-bold text-yellow-300">
                 {(nebuluxData.supply + nebuluxData.sold).toLocaleString()}</div>
               <div className="text-sm text-gray-400">Total Supply</div>
             </div>
-            <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
+            {/* <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
               <div className="text-3xl mb-2">⭐</div>
               <div className="text-2xl font-bold text-yellow-300">{(nebuluxData.supply).toLocaleString()}</div>
               <div className="text-sm text-gray-400">Coins Left</div>
@@ -290,7 +290,7 @@ export default function NebuluxCoin() {
               <div className="text-3xl mb-2">🔥</div>
               <div className="text-2xl font-bold text-green-300">{nebuluxData.sold.toLocaleString()}</div>
               <div className="text-sm text-gray-400">Coins Sold</div>
-            </div>
+            </div> */}
           </div>
         )}
 
@@ -308,7 +308,7 @@ export default function NebuluxCoin() {
               <div className="relative">
                 <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                   <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Enter USDT
+                    Enter Tokens
                   </label>
                   <div className="relative">
                     <input
@@ -324,7 +324,7 @@ export default function NebuluxCoin() {
                   </div>
                   {amount && (
                     <div className="mt-2 text-base text-gray-400">
-                      ≈ {((Number(amount)/nebuluxData?.price || 1)).toFixed(2)} XPFI COIN
+                      ≈ {((Number(amount) * nebuluxData?.price || 1)).toFixed(2)} USDT
                     </div>
                   )}
                 </div>
@@ -463,7 +463,7 @@ export default function NebuluxCoin() {
                   <img src={MainContent.appLogo} alt="App Logo" className="w-full h-full object-contain" />
                 </div>
                 <USDTPaymentMain
-                  amount={amount}
+                  amount={amount * nebuluxData?.price}
                   walletType={walletType}
                   onSuccess={handlePurchase}
                   onFailure={() => setShowPaymentModal(false)}

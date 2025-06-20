@@ -4,7 +4,7 @@ import appFavicon from "../assets/app/Hello.png";
 import { getCurrentUser } from "../utils/additonalFunc";
 import axios from "axios";
 export const MainContent = {
-  appName: "Zcoin",
+  appName: "XPFI",
   appLogo: appLogoTrans,
   appLogoTrans: appLogoTrans,
   appFavicon: appFavicon,
@@ -15,8 +15,8 @@ export const MainContent = {
 };
 
 export const backendConfig = {
-  base: "http://192.168.1.35:7009/api",
-  origin: "http://192.168.1.35:7009",
+  base: "http://192.168.1.57:7000/api",
+  origin: "http://192.168.1.57:7000",
   // base: "http://192.168.1.59:6074/api",
   // origin: "http://192.168.1.59:6074",
   // base: "https://api.zcoin.dev/api",
