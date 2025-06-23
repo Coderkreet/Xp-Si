@@ -109,7 +109,7 @@ const HeroSection = () => {
       </div> */}
 
       {/* Main Content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-20">
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-[2rem]">
         {/* Floating Coins Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {floatingCoins.map((coin) => (
@@ -125,7 +125,7 @@ const HeroSection = () => {
           ))}
         </div>
 
-        <div className={`w-full max-w-7xl mx-auto transform transition-all duration-1000 ${
+        <div className={`w-full max-w-7xl transform transition-all duration-1000 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
           
