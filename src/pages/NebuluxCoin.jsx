@@ -86,7 +86,7 @@ export default function NebuluxCoin() {
         Swal.fire({
           icon: "success",
           title: "Purchase Successful",
-          text: `You have successfully purchased ${amount} Z-Coin.`,
+          text: `You have successfully purchased ${amount} XPFI Coin.`,
           confirmButtonText: "OK",
           timer: 5000,
           showConfirmButton: true,
@@ -463,7 +463,7 @@ export default function NebuluxCoin() {
                   <img src={MainContent.appLogo} alt="App Logo" className="w-full h-full object-contain" />
                 </div>
                 <USDTPaymentMain
-                  amount={amount * nebuluxData?.price}
+                  amount={Number(amount * nebuluxData?.price)}
                   walletType={walletType}
                   onSuccess={handlePurchase}
                   onFailure={() => setShowPaymentModal(false)}
