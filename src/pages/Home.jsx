@@ -36,6 +36,8 @@ import ZCoinLanding from "../Components/HomeComponents/Whyprestorix";
 import ZcoinReferralPlan from "../Components/HomeComponents/ZcoinReferralPlan";
 import ZcoinRoadmap from "../Components/HomeComponents/ZcoinRoadmap ";
 import DecentralizedInfrastructure from "../Components/HomeComponents/DecentralizedInfrastructure";
+import SmartCryptoMining from "./SmartCryptoMining";
+import OurTopIntegration2 from "./OurTopIntegration2";
 
 
 
@@ -70,26 +72,30 @@ const Home = () => {
 <HeroSection />
 {/* <CountrySlider/> */}
 {/* <Whyprestorix /> */}
+<SmartCryptoMining/>
 <ZCoinLanding/>
+
+<OurTopIntegration2/>
+
 {/* <JourneySection/> */}
 
 <div className="w-full text-white ">
   <div>
-
-        <OurTopIntegration />
+{/* <SmartCryptoMining/> */}
+        {/* <OurTopIntegration /> */}
   </div>
         <div className="p-2 xl:p-5">
           {/* <ProductSection /> */}
           {/* <CryptoMiningMarketplace/> */}
         </div>
      {/* <ServiceSection /> */}
-        <FeatureSection />
+        {/* <FeatureSection /> */}
             {/* <CoinDoxSection /> */}
             <AboutPretorix />
               <How_Earn />
          {/* <AdvancedFeatures /> */}
 
-         <DecentralizedInfrastructure/>
+         {/* <DecentralizedInfrastructure/> */}
         {/* <BenefitsSection /> */}
         {/* <NextGenSection /> */}
         {/* <ZcoinRoadmap/> */}

@@ -163,14 +163,13 @@ const HeroSection = () => {
             </div>
           </div>
 
+        
           {/* Description card */}
-          <div className="max-w-4xl mx-auto mb-12">
+          {/* <div className="max-w-4xl mx-auto mb-12">
             <div className="backdrop-blur-xl bg-white/5 p-8 sm:p-10 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden">
-              {/* Background pattern */}
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-600/5"></div>
               
               <div className="relative z-10">
-                {/* Logo and intro */}
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                     <span className="text-white font-bold text-xl">Z</span>
@@ -182,8 +181,8 @@ const HeroSection = () => {
                 </div>
                 
                 <p className="text-gray-200 text-justify  md:text-left text-lg sm:text-xl leading-relaxed tracking-wide">
-                  {/* In the fast-paced world of digital finance, <strong className="text-cyan-400">XPFI-Coin </strong> emerges as a next-generation investment solution designed for both beginners and seasoned investors. Built under the CryptoZ Investment Plan, XPFI-Coin  is more than just a cryptocurrency — it's a 
-                  <strong className="text-purple-400"> secure, innovative, and community-driven</strong> digital asset that empowers users to grow their wealth through smart, transparent, and decentralized investments. */}
+                  In the fast-paced world of digital finance, <strong className="text-cyan-400">XPFI-Coin </strong> emerges as a next-generation investment solution designed for both beginners and seasoned investors. Built under the CryptoZ Investment Plan, XPFI-Coin  is more than just a cryptocurrency — it's a 
+                  <strong className="text-purple-400"> secure, innovative, and community-driven</strong> digital asset that empowers users to grow their wealth through smart, transparent, and decentralized investments.
                   XPFI-Coin is a next-generation decentralized digital asset powering a comprehensive Web3
 ecosystem. From ultra-fast, low-fee transactions to full DeFi integration, XPFI-Coin offers users the
 freedom to lend, stake, farm, and earn in a fully permissionless environment. It fuels a dynamic
@@ -197,7 +196,7 @@ gamer, investor, creator, or builder — XPFI-Coin is your gateway to the decent
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Action buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">

@@ -6,14 +6,14 @@ export default function ZCoinEarningGuide() {
       // number: 1,
       title: "Choose Your Investment Plan",
       description: "Browse through our flexible plans — Starter, Bronze, Silver, Gold, or Platinum. Each plan comes with a fixed Monthly ROI, lock-in period, and total ROI.",
-      highlight: "Start with as low as 100 Z-Coin.",
+      highlight: "Start with as low as 100 XPFI-Coin.",
       icon: Search,
       color: "blue"
     },
     {
       // number: 2,
       title: "Invest & Lock-In",
-      description: "Once you select your plan, invest your Z-Coins and lock in for the chosen duration. Your funds are securely held and start generating monthly returns immediately.",
+      description: "Once you select your plan, invest your XPFI-Coins and lock in for the chosen duration. Your funds are securely held and start generating monthly returns immediately.",
       icon: Lock,
       color: "green"
     },
@@ -31,7 +31,7 @@ export default function ZCoinEarningGuide() {
   const bonusFeatures = [
     {
       icon: Coins,
-      title: "More Z-Coins = Higher Monthly ROI",
+      title: "More XPFI-Coins = Higher Monthly ROI",
       description: "Increase your investment amount for better returns"
     },
     {
@@ -83,20 +83,19 @@ export default function ZCoinEarningGuide() {
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 py-16">
         {/* Header Section */}
-        <div className="text-center mb-16">
+        {/* <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 bg-opacity-20 backdrop-blur-sm rounded-full mb-6 border border-blue-500 border-opacity-30">
             <Wallet className="w-8 h-8 text-yellow-400" />
           </div>
           <h1 className="text-5xl font-bold mb-6 tracking-tight">
-            How to Earn with <span className="text-blue-400">Z-Coin</span>
+            How to Earn with <span className="text-blue-400">XPFI-Coin</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             <strong>Start earning in 3 simple steps. No hassle. Just crypto rewards.</strong>
           </p>
-        </div>
+        </div> */}
 
-        {/* Steps Section */}
-        <div className="max-w-4xl mx-auto mb-16">
+        {/* <div className="max-w-4xl mx-auto mb-16">
           {steps.map((step, index) => {
             const IconComponent = step.icon;
             const colors = getColorClasses(step.color);
@@ -105,7 +104,6 @@ export default function ZCoinEarningGuide() {
               <div key={index} className="mb-12 last:mb-0">
                 <div className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 border-opacity-50 hover:bg-opacity-70 transition-all duration-300">
                   <div className="flex flex-col lg:flex-row items-start gap-6">
-                    {/* Step Number & Icon */}
                     <div className="flex-shrink-0">
                       <div className={`w-16 h-16 ${colors.bg} rounded-xl flex items-center justify-center border ${colors.border} mb-4`}>
                         <IconComponent className={`w-8 h-8 ${colors.text}`} />
@@ -115,7 +113,6 @@ export default function ZCoinEarningGuide() {
                       </div>
                     </div>
 
-                    {/* Content */}
                     <div className="flex-grow">
                       <h3 className="text-2xl font-bold text-white mb-4">
                         {step.title}
@@ -124,7 +121,6 @@ export default function ZCoinEarningGuide() {
                         {step.description}
                       </p>
                       
-                      {/* Highlights */}
                       {step.highlight && (
                         <div className={`inline-block ${colors.bg} ${colors.text} text-sm font-semibold px-4 py-2 rounded-full border ${colors.border} mb-2`}>
                           👉 {step.highlight}
@@ -140,7 +136,6 @@ export default function ZCoinEarningGuide() {
                   </div>
                 </div>
 
-                {/* Arrow Between Steps */}
                 {index < steps.length - 1 && (
                   <div className="flex justify-center my-6">
                     <div className="w-12 h-12 bg-gray-700 bg-opacity-50 rounded-full flex items-center justify-center border border-gray-600 border-opacity-50">
@@ -151,7 +146,7 @@ export default function ZCoinEarningGuide() {
               </div>
             );
           })}
-        </div>
+        </div> */}
 
         {/* Bonus Section */}
         <div className="mb-16">

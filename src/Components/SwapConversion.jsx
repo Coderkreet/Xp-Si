@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import ConversionDetail from "./ConversionDetail";
 import { NumberFormatCommas } from "../utils/FormatText";
 import { getNebuluxData } from "../api/user-api";
-import zCoin from "../assets/icons/zCoin.png"; // Assuming you have a Z-Coin image in your assets
+import zCoin from "../assets/icons/zCoin.png"; 
 
 const SwapConversion = ({ swapHandler }) => {
   const dispatch = useDispatch();
@@ -199,7 +199,7 @@ const SwapConversion = ({ swapHandler }) => {
               <div className="text-right">
                 <span className="text-sm text-slate-400">Available</span>
                 <div className="text-sm font-medium text-blue-400">
-                  <NumberFormatCommas decimalScale={2} value={userSwapingData?.currentIncome || 0} /> Z-Coin
+                  <NumberFormatCommas decimalScale={2} value={userSwapingData?.currentIncome || 0} /> XPFI-Coin
                 </div>
               </div>
             </div>
@@ -209,12 +209,12 @@ const SwapConversion = ({ swapHandler }) => {
                 <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center">
                   <img
                     src={zCoin}
-                    alt="Z-Coin"
+                    alt="XPFI-Coin"
                     className="w-10 h-10 rounded-full"
                   />
                 </div>
                 <div>
-                  <div className="text-white font-medium">Z-Coin</div>
+                  <div className="text-white font-medium">XPFI-Coin</div>
                   <div className="text-slate-400 text-sm">Z Token (Bep20)</div>
                 </div>
               </div>
