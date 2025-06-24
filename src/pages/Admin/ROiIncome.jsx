@@ -104,12 +104,8 @@ const ROiIncome = () => {
                     </div>
 
                     {/* Total Amount */}
-                    <div className="bg-blue-600/20 text-blue-300 px-4 py-2 rounded-lg border border-blue-500/20">
-<<<<<<< Updated upstream
+                  <div className="bg-blue-600/20 text-blue-300 px-4 py-2 rounded-lg border border-blue-500/20">
                       Total Amount: {totalAmount?.toFixed(2)} XPFI-Coin
-=======
-                      Total Amount: {totalAmount?.toFixed(2)} XPFI Token
->>>>>>> Stashed changes
                     </div>
 
                     {/* Rows per page */}
@@ -203,11 +199,7 @@ const ROiIncome = () => {
                                             </td>
                                             <td className="px-6 py-4">
                                                 <span className="text-slate-200 font-medium">
-<<<<<<< Updated upstream
                                                     {item.amount.toFixed(2)} XPFI-Coin
-=======
-                                                    {item.amount.toFixed(2)} XPFI Token
->>>>>>> Stashed changes
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4">

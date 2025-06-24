@@ -544,12 +544,8 @@ export default function WalletPage() {
           {isLoading ? (
             amountSkeleton()
           ) : (
-            <>
-<<<<<<< Updated upstream
+              <>
                 <div className="text-lg sm:text-xl font-bold mb-1">{Number(user?.account?.currentIncome).toFixed(2)} XPFI-Coin</div>
-=======
-                <div className="text-lg sm:text-xl font-bold mb-1">{Number(user?.account?.currentIncome).toFixed(2)} XPFI Token</div>
->>>>>>> Stashed changes
             </>
           )}
 

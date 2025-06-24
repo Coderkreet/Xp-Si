@@ -15,11 +15,7 @@ import Swal from "sweetalert2";
 import ConversionDetail from "./ConversionDetail";
 import { NumberFormatCommas } from "../utils/FormatText";
 import { getNebuluxData } from "../api/user-api";
-<<<<<<< Updated upstream
-import zCoin from "../assets/icons/zCoin.png"; 
-=======
 import appLogo from '../assets/app/Hello.png'
->>>>>>> Stashed changes
 
 const SwapConversion = ({ swapHandler }) => {
   const dispatch = useDispatch();
@@ -203,11 +199,7 @@ const SwapConversion = ({ swapHandler }) => {
               <div className="text-right">
                 <span className="text-sm text-slate-400">Available</span>
                 <div className="text-sm font-medium text-blue-400">
-<<<<<<< Updated upstream
                   <NumberFormatCommas decimalScale={2} value={userSwapingData?.currentIncome || 0} /> XPFI-Coin
-=======
-                  <NumberFormatCommas decimalScale={2} value={userSwapingData?.total || 0} /> XPFI Token
->>>>>>> Stashed changes
                 </div>
               </div>
             </div>
@@ -216,24 +208,14 @@ const SwapConversion = ({ swapHandler }) => {
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center">
                   <img
-<<<<<<< Updated upstream
                     src={zCoin}
                     alt="XPFI-Coin"
-=======
-                    src={appLogo}
-                    alt="XPFI Token"
->>>>>>> Stashed changes
                     className="w-10 h-10 rounded-full"
                   />
                 </div>
                 <div>
-<<<<<<< Updated upstream
-                  <div className="text-white font-medium">XPFI-Coin</div>
-                  <div className="text-slate-400 text-sm">Z Token (Bep20)</div>
-=======
                   <div className="text-white font-medium">XPFI Token</div>
                   <div className="text-slate-400 text-sm">XPFI Token (Bep20)</div>
->>>>>>> Stashed changes
                 </div>
               </div>
               

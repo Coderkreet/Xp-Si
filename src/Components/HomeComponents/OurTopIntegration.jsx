@@ -8,11 +8,7 @@ export default function ZCoinInvestmentPlans() {
       name: "Starter Plan",
       color: "green",
       emoji: "🟢",
-<<<<<<< Updated upstream
-      investment: "100 XPFI-Coin",
-=======
       investment: "100 XPFI Token",
->>>>>>> Stashed changes
       monthlyROI: "6%",
       lockPeriod: "6 Months",
       totalROI: "36%",
@@ -28,11 +24,7 @@ export default function ZCoinInvestmentPlans() {
       name: "Bronze Plan",
       color: "orange",
       emoji: "🟠",
-<<<<<<< Updated upstream
-      investment: "500 ",
-=======
       investment: "500 XPFI Token",
->>>>>>> Stashed changes
       monthlyROI: "7%",
       lockPeriod: "8 Months",
       totalROI: "56%",
@@ -49,11 +41,7 @@ export default function ZCoinInvestmentPlans() {
       name: "Silver Plan",
       color: "gray",
       emoji: "⚪",
-<<<<<<< Updated upstream
-      investment: "1000 XPFI-Coin",
-=======
       investment: "1000 XPFI Token",
->>>>>>> Stashed changes
       monthlyROI: "8%",
       lockPeriod: "10 Months",
       totalROI: "80%",
@@ -70,11 +58,7 @@ export default function ZCoinInvestmentPlans() {
       name: "Gold Plan",
       color: "yellow",
       emoji: "🟡",
-<<<<<<< Updated upstream
-      investment: "2000 XPFI-Coin",
-=======
       investment: "2000 XPFI Token",
->>>>>>> Stashed changes
       monthlyROI: "9%",
       lockPeriod: "12 Months",
       totalROI: "108%",
@@ -92,11 +76,7 @@ export default function ZCoinInvestmentPlans() {
       name: "Platinum Plan",
       color: "blue",
       emoji: "🔵",
-<<<<<<< Updated upstream
-      investment: "5000 XPFI-Coin",
-=======
       investment: "5000 XPFI Token",
->>>>>>> Stashed changes
       monthlyROI: "10%",
       lockPeriod: "15 Months",
       totalROI: "150%",
@@ -142,11 +122,7 @@ export default function ZCoinInvestmentPlans() {
             Choose the Right Plan, Start Earning Today
           </h2>
           <p className="text-lg text-gray-400 max-w-4xl mx-auto leading-relaxed">
-<<<<<<< Updated upstream
             At XPFI-Coin, we offer flexible and profitable investment plans tailored to fit every kind of investor — from beginners to serious crypto earners. Whether you're just starting out or scaling up, there's a XPFI-Coin plan built for you.
-=======
-            At XPFI Token, we offer flexible and profitable investment plans tailored to fit every kind of investor — from beginners to serious crypto earners. Whether you're just starting out or scaling up, there's a XPFI Token plan built for you.
->>>>>>> Stashed changes
           </p>
         </div>
 
@@ -249,11 +225,7 @@ export default function ZCoinInvestmentPlans() {
               Start Your Crypto Journey Today
             </h2>
             <p className="text-gray-300 text-lg mb-8 max-w-3xl mx-auto leading-relaxed">
-<<<<<<< Updated upstream
-              <strong>Start your crypto journey with the plan that fits your vision.</strong> With XPFI-Coin, your investment works for you — every single day.
-=======
               <strong>Start your crypto journey with the plan that fits your vision.</strong> With XPFI Token, your investment works for you — every single day.
->>>>>>> Stashed changes
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-blue-500/25">
