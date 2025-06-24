@@ -77,29 +77,29 @@ const SidebardAdmin = () => {
       label: 'Coin Data',
       path: AuthenticatedRoutes.COIN_INFO
     },
-    {
-      id: 'plans',
-      icon: <Package size={20} />,
-      label: 'Our Plans',
-      path: '',
-      submenu: [
-        { label: 'All Plans', path: AuthenticatedRoutes.OUR_PLANS },
-        { label: 'Purchase Plan History', path: AuthenticatedRoutes.PerchancePlanHistory },
-      ]
-    },
+    // {
+    //   id: 'plans',
+    //   icon: <Package size={20} />,
+    //   label: 'Our Plans',
+    //   path: '',
+    //   submenu: [
+    //     { label: 'All Plans', path: AuthenticatedRoutes.OUR_PLANS },
+    //     { label: 'Purchase Plan History', path: AuthenticatedRoutes.PerchancePlanHistory },
+    //   ]
+    // },
 
-    {
-      id: 'income-history',
-      icon: <DollarSign size={20} />,
-      label: 'Income History',
-      path: AuthenticatedRoutes.INCOME_HISTORY_ALL
-    },
-    {
-      id: 'Roi-Income',
-      icon: <DollarSign size={20} />,
-      label: 'ROI-Income History',
-      path: AuthenticatedRoutes.ROI_INCOME
-    },
+    // {
+    //   id: 'income-history',
+    //   icon: <DollarSign size={20} />,
+    //   label: 'Income History',
+    //   path: AuthenticatedRoutes.INCOME_HISTORY_ALL
+    // },
+    // {
+    //   id: 'Roi-Income',
+    //   icon: <DollarSign size={20} />,
+    //   label: 'ROI-Income History',
+    //   path: AuthenticatedRoutes.ROI_INCOME
+    // },
     // {
     //   id: 'settings',
     //   icon: <Settings size={20} />,
@@ -177,7 +177,7 @@ const SidebardAdmin = () => {
             </div>
             <div>
               <span className="font-bold text-lg">Admin Panel</span>
-              <p className="text-xs text-gray-400">Control Center</p>
+              <p className="text-xs text-gray-400">XPFI Coin</p>
             </div>
           </div>
         </div>
@@ -252,7 +252,7 @@ const SidebardAdmin = () => {
             <span>Logout</span>
           </button>
           
-          <div className="flex items-center justify-between text-sm text-gray-400">
+          {/* <div className="flex items-center justify-between text-sm text-gray-400">
             <span>Admin v1.0</span>
             <div className="flex items-center space-x-2">
               <button className="p-1 hover:text-white transition-colors">
@@ -262,7 +262,7 @@ const SidebardAdmin = () => {
                 <Bell size={16} />
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
