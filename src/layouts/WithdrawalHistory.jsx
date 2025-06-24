@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { getAdminWithdrawalHistory, updateWithdrawalStatus } from '../api/admin-api';
 import { formatDateTime, maskTwoLetters } from '../utils/additonalFunc';
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  Search, 
-  Calendar, 
+import {
+  ChevronLeft,
+  ChevronRight,
+  Search,
+  Calendar,
   User,
   Hash,
   Activity,
@@ -13,15 +13,19 @@ import {
   Wallet,
   CircleDollarSign
 } from 'lucide-react';
+import { IoCloseCircle } from "react-icons/io5";
 import { useDispatch } from 'react-redux';
 import { setLoading } from '../redux/slice/loadingSlice';
 import Swal from 'sweetalert2';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import QRCode from 'react-qr-code';
 
 const WithdrawalHistory = () => {
   const dispatch = useDispatch();
   const [withdrawalHistory, setWithdrawalHistory] = useState([]);
+  const [rowData, setRowData] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
     fetchWithdrawalHistory();
@@ -55,7 +59,7 @@ const WithdrawalHistory = () => {
           dispatch(setLoading(true));
           const response = await updateWithdrawalStatus(id, status);
           console.log(response)
-          if (response.status) {
+          if (response.success) {
             Swal.fire({
               title: "Success!",
               text: response.message || `Withdrawal marked as ${status}.`,
@@ -91,6 +95,33 @@ const WithdrawalHistory = () => {
     return <span>{options.rowIndex + 1}</span>;
   };
 
+  const handleViewHandler = (rowData) => {
+    return (
+      <div className='px-2 py-1 flex items-center justify-center gap-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 transition-colors'
+        onClick={() => {
+          setRowData(rowData);
+          setShowDetails(true);
+        }}
+      >
+        View
+      </div>
+    )
+  }
+
+  // Copy wallet address to clipboard
+  const handleCopyAddress = (address) => {
+    if (navigator && navigator.clipboard) {
+      navigator.clipboard.writeText(address);
+      Swal.fire({
+        title: "Copied!",
+        text: "Wallet address copied to clipboard.",
+        icon: "success",
+        timer: 1200,
+        showConfirmButton: false,
+      });
+    }
+  };
+
   return (
     <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 min-h-screen p-6">
       {/* Header */}
@@ -102,274 +133,11 @@ const WithdrawalHistory = () => {
       </div>
 
       {/* Controls */}
-      {/* <div className="mb-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
-        <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
-            <input
-              type="text"
-              placeholder="Search by name, transaction ID, or amount..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            />
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <span className="text-slate-300 text-sm">Show:</span>
-            <select
-              value={rowsPerPage}
-              onChange={(e) => {
-                setRowsPerPage(Number(e.target.value));
-                setCurrentPage(1);
-              }}
-              className="bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value={5}>5</option>
-              <option value={10}>10</option>
-              <option value={25}>25</option>
-            </select>
-            <span className="text-slate-300 text-sm">rows</span>
-          </div>
-        </div>
-      </div> */}
+      {/* ...controls code omitted for brevity... */}
 
       {/* Table */}
       <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl overflow-hidden">
-        {/* {paginatedData?.length > 0 ? (
-          <>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-slate-700/50">
-                  <tr>
-                    <th className="px-6 py-4 text-left">
-                      <div className="flex items-center space-x-2">
-                        <Hash size={16} className="text-slate-400" />
-                        <span className="text-slate-300 font-semibold text-sm">S.No</span>
-                      </div>
-                    </th>
-                    <th className="px-6 py-4 text-left">
-                      <button
-                        onClick={() => handleSort('name')}
-                        className="flex items-center space-x-2 hover:text-blue-400 transition-colors"
-                      >
-                        <User size={16} className="text-slate-400" />
-                        <span className="text-slate-300 font-semibold text-sm">User</span>
-                        {sortField === 'name' && (
-                          <span className="text-blue-400">
-                            {sortOrder === 'asc' ? '↑' : '↓'}
-                          </span>
-                        )}
-                      </button>
-                    </th>
-                    <th className="px-6 py-4 text-left">
-                      <button
-                        onClick={() => handleSort('amount')}
-                        className="flex items-center space-x-2 hover:text-blue-400 transition-colors"
-                      >
-                        <DollarSign size={16} className="text-slate-400" />
-                        <span className="text-slate-300 font-semibold text-sm">Amount</span>
-                        {sortField === 'amount' && (
-                          <span className="text-blue-400">
-                            {sortOrder === 'asc' ? '↑' : '↓'}
-                          </span>
-                        )}
-                      </button>
-                    </th>
-                    <th className="px-6 py-4 text-left">
-                      <div className="flex items-center space-x-2">
-                        <Wallet size={16} className="text-slate-400" />
-                        <span className="text-slate-300 font-semibold text-sm">Wallet Address</span>
-                      </div>
-                    </th>
-                    <th className="px-6 py-4 text-left">
-                      <div className="flex items-center space-x-2">
-                        <Hash size={16} className="text-slate-400" />
-                        <span className="text-slate-300 font-semibold text-sm">Transaction ID</span>
-                      </div>
-                    </th>
-                    <th className="px-6 py-4 text-left">
-                      <button
-                        onClick={() => handleSort('status')}
-                        className="flex items-center space-x-2 hover:text-blue-400 transition-colors"
-                      >
-                        <Activity size={16} className="text-slate-400" />
-                        <span className="text-slate-300 font-semibold text-sm">Status</span>
-                        {sortField === 'status' && (
-                          <span className="text-blue-400">
-                            {sortOrder === 'asc' ? '↑' : '↓'}
-                          </span>
-                        )}
-                      </button>
-                    </th>
-                    <th className="px-6 py-4 text-left">
-                      <button
-                        onClick={() => handleSort('createdAt')}
-                        className="flex items-center space-x-2 hover:text-blue-400 transition-colors"
-                      >
-                        <Calendar size={16} className="text-slate-400" />
-                        <span className="text-slate-300 font-semibold text-sm">Date</span>
-                        {sortField === 'createdAt' && (
-                          <span className="text-blue-400">
-                            {sortOrder === 'asc' ? '↑' : '↓'}
-                          </span>
-                        )}
-                      </button>
-                    </th>
-                    <th className="px-6 py-4 text-left">
-                      <div className="flex items-center space-x-2">
-                        <CircleDollarSign size={16} className="text-slate-400" />
-                        <span className="text-slate-300 font-semibold text-sm">Action</span>
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {paginatedData.map((item, index) => (
-                    <tr
-                      key={item._id}
-                      className="border-t border-slate-700 hover:bg-slate-700/30 transition-colors"
-                    >
-                      <td className="px-6 py-4">
-                        <span className="text-slate-300 font-medium">
-                          {startIndex + index + 1}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="space-y-1">
-                          <span className="text-slate-200 font-medium">
-                            {item.userId.name}
-                          </span>
-                          <div className="text-slate-400 text-sm">
-                            {item.userId.userId}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="space-y-1">
-                          <div className="text-slate-200 font-semibold">
-                            ${item.amount}
-                          </div>
-                          <div className="text-slate-400 text-sm">
-                            {item.type}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="">
-                          <span className="text-slate-300 text-sm">
-                            {item.clientAddress}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className="text-slate-300 text-sm">
-                          {item.transactionId}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${item.status === 'Completed'
-                            ? 'bg-green-600/20 text-green-300'
-                          : item.status === 'Rejected'
-                            ? 'bg-red-600/20 text-red-300'
-                            : 'bg-yellow-600/20 text-yellow-300'
-                          }`}>
-                          {item.status}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className="text-slate-300 text-sm">
-                          {formatDateTime(item.createdAt)}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex justify-center gap-4">
-                          {item.status === "Pending" && (
-                            <>
-                              <button
-                                className="px-2 py-1 !bg-green-500 text-white rounded hover:bg-green-600"
-                                onClick={() => {
-                                  handleUpdateStatus(item._id, "Completed");
-                                }}
-                              >
-                                Approve
-                              </button>
-                              <button
-                                className="px-2 py-1 !bg-red-500 text-white rounded hover:bg-green-600"
-                                onClick={() => {
-                                  handleUpdateStatus(item._id, "Rejected");
-                                }}
-                              >
-                                Reject
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="border-t border-slate-700 px-6 py-4">
-              <div className="flex items-center justify-between">
-                <div className="text-slate-400 text-sm">
-                  Showing {startIndex + 1} to {Math.min(startIndex + rowsPerPage, filteredAndSortedData.length)} of {filteredAndSortedData.length} entries
-                </div>
-                <div className="flex items-center space-x-2">
-                  <button
-                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                    className="flex items-center space-x-1 px-3 py-2 bg-slate-700 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-slate-300 rounded-lg transition-colors"
-                  >
-                    <ChevronLeft size={16} />
-                    <span>Previous</span>
-                  </button>
-
-                  <div className="flex space-x-1">
-                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                      const pageNum = i + 1;
-                      return (
-                        <button
-                          key={pageNum}
-                          onClick={() => setCurrentPage(pageNum)}
-                          className={`px-3 py-2 rounded-lg transition-colors ${
-                            currentPage === pageNum
-                              ? 'bg-blue-600 text-white'
-                              : 'bg-slate-700 hover:bg-slate-600 text-slate-300'
-                          }`}
-                        >
-                          {pageNum}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <button
-                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                    disabled={currentPage === totalPages}
-                    className="flex items-center space-x-1 px-3 py-2 bg-slate-700 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-slate-300 rounded-lg transition-colors"
-                  >
-                    <span>Next</span>
-                    <ChevronRight size={16} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </>
-        ) : (
-          <div className="text-center py-16">
-            <div className="text-slate-500 mb-4">
-              <Activity size={48} className="mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-slate-300 mb-2">
-                No Withdrawal History Found
-              </h3>
-              <p className="text-slate-500">
-                {searchTerm ? 'No results match your search criteria.' : 'No withdrawal history available.'}
-              </p>
-            </div>
-          </div>
-        )} */}
+        {/* ...table code omitted for brevity... */}
         <div className="w-full">
           <DataTable
             value={withdrawalHistory}
@@ -411,14 +179,28 @@ const WithdrawalHistory = () => {
               field="amount"
             />
             <Column
+              header="Status"
+              field="status"
+              body={(rowData) => {
+                return (
+                  <span className={`px-2 py-1 rounded-md text-sm font-semibold ${rowData.status === 'Pending' ? 'bg-yellow-500 text-white' : rowData.status === 'Completed' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>
+                    {rowData.status}
+                  </span>
+                );
+              }}
+            />
+            <Column
               header="Date"
               field="createdAt"
               body={(rowData) => {
                 return rowData.createdAt
-                  ? new Date(rowData.createdAt).toLocaleDateString('en-IN', {
+                  ? new Date(rowData.createdAt).toUTCString('en-IN', {
                     day: '2-digit',
                     month: 'short',
-                    year: 'numeric'
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true // optional: use false for 24-hour format
                   })
                   : '';
               }}
@@ -426,19 +208,92 @@ const WithdrawalHistory = () => {
             />
             <Column
               header="Action"
-              body={(rowData) => {
-                return (
-                  <div className='px-2 py-1 flex items-center gap-2 bg-red-20'>
-                    View
-                  </div>
-                )
-              }}
+              body={handleViewHandler}
             />
 
           </DataTable>
         </div>
 
       </div>
+
+      {/* Details Modal */}
+      {showDetails && rowData && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 overflow-y-auto">
+          <div className="w-full max-w-2xl space-y-4 scale-90 md:scale-100">
+            {/* Header */}
+            <div className="flex flex-row justify-between items-center rounded-lg shadow-lg p-4 sm:p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900">
+              <h3 className="text-lg sm:text-xl font-semibold text-white">
+                Withdrawal Details
+              </h3>
+              <div
+                className="text-red-500 cursor-pointer mt-2 sm:mt-0"
+                onClick={() => {
+                  setShowDetails(false);
+                  setRowData(null);
+                }}
+              >
+                <IoCloseCircle size={24} />
+              </div>
+            </div>
+
+            {/* Body */}
+            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+              <div className="space-y-4 text-sm sm:text-base break-words">
+                <p><strong>Name:</strong> {rowData.userId.name}</p>
+                <p><strong>Email:</strong> {rowData.userId.email}</p>
+                <p><strong>Mobile:</strong> {rowData.userId.mobile}</p>
+                <p><strong>Amount:</strong> ${rowData.amount}</p>
+                <p><strong>Wallet Address:</strong> {rowData.clientAddress}</p>
+                <p><strong>Status:</strong> {rowData.status}</p>
+                <p>
+                  <strong>Date & Time:</strong>{' '}
+                  {new Date(rowData.createdAt).toUTCString('en-IN', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                  })}
+                </p>
+
+                {/* QR Code */}
+                <div className="space-y-2">
+                  <h4 className="text-base font-semibold">Wallet Address QR:</h4>
+                  <QRCode
+                    size={200}
+                    value={rowData.clientAddress}
+                    viewBox="0 0 256 256"
+                    className="mx-auto"
+                  />
+                </div>
+
+                {/* Action Buttons */}
+                {rowData.status === 'Pending' && (
+                  <div className="w-full flex flex-wrap gap-3 pt-2">
+                    <button
+                      className="flex-1 min-w-[100px] px-4 py-2 bg-blue-500 rounded-md text-white text-sm"
+                      onClick={() => handleCopyAddress(rowData.clientAddress)}
+                    >
+                      Copy Address
+                    </button>
+                    <button className="flex-1 min-w-[100px] px-4 py-2 bg-green-500 rounded-md text-white text-sm"
+                      onClick={() => handleUpdateStatus(rowData._id, 'Completed')}
+                    >
+                      Approve
+                    </button>
+                    <button className="flex-1 min-w-[100px] px-4 py-2 bg-red-500 rounded-md text-white text-sm"
+                      onClick={() => handleUpdateStatus(rowData._id, 'Rejected')}
+                    >
+                      Reject
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
