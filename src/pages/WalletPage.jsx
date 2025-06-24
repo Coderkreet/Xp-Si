@@ -491,7 +491,7 @@ export default function WalletPage() {
       <div className="flex flex-col sm:flex-row justify-between items-start gap-4 sm:gap-0 mb-6 sm:mb-8">
         <div>
           <div className="flex items-center gap-2 text-gray-400 mb-2">
-            <span>Total Fund Added</span>
+            <span>Total XPFI Coins Purchased</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="bg-amber-500 rounded-full p-1">
@@ -503,7 +503,7 @@ export default function WalletPage() {
               amountSkeleton()
             ) : (
                 <h1 className="text-2xl sm:text-3xl font-bold">
-                  {(user?.fund || 0).toFixed(2)} Z Token
+                  {(user?.fund || 0).toFixed(2)} XPFI Token
                 </h1>
             )}
           </div>
@@ -545,7 +545,11 @@ export default function WalletPage() {
             amountSkeleton()
           ) : (
             <>
+<<<<<<< Updated upstream
                 <div className="text-lg sm:text-xl font-bold mb-1">{Number(user?.account?.currentIncome).toFixed(2)} XPFI-Coin</div>
+=======
+                <div className="text-lg sm:text-xl font-bold mb-1">{Number(user?.account?.currentIncome).toFixed(2)} XPFI Token</div>
+>>>>>>> Stashed changes
             </>
           )}
 

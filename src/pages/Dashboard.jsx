@@ -369,12 +369,12 @@ const Dashboard = () => {
           <div className="space-y-4">
             <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 shadow-xl">
               <h3 className="text-lg font-semibold text-gray-300 mb-2">Total Investment</h3>
-              <p className="text-3xl font-bold text-blue-400"> {user?.data?.account?.totalInvestment}</p>
+              <p className="text-3xl font-bold text-blue-400"> ${user?.data?.account?.totalInvestment}</p>
               {/* <p className="text-sm text-gray-500 mt-1">Start mining to see stats</p> */}
             </div>
             <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 shadow-xl">
               <h3 className="text-lg font-semibold text-gray-300 mb-2">Total Earned</h3>
-              <p className="text-3xl font-bold text-green-400">${Number(user?.data?.account?.totalEarning).toFixed(2)}</p>
+              <p className="text-3xl font-bold text-green-400">{Number(user?.data?.account?.totalEarning).toFixed(4)} tokens</p>
               {/* <p className="text-sm text-gray-500 mt-1">Ready to start earning</p> */}
             </div>
           </div>

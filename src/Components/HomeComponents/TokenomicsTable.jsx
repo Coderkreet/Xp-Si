@@ -116,7 +116,11 @@ const TokenomicsTable = () => {
       {/* Header */}
       <div className="text-center mb-10 sm:mb-14">
         <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-4">
+<<<<<<< Updated upstream
           XPFI-Coin Tokenomics
+=======
+          XPFI Token Tokenomics
+>>>>>>> Stashed changes
         </h2>
         <p className="text-gray-400 text-base sm:text-lg">
           Complete token distribution and allocation details

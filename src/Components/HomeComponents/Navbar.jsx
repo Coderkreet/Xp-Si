@@ -215,7 +215,11 @@ const navigate = useNavigate();
 
         {/* Footer */}
         <div className="p-6 border-t border-slate-700/50">
+<<<<<<< Updated upstream
           <p className="text-xs text-slate-500 text-center">© 2024 XPFI-Coin. All rights reserved.</p>
+=======
+          <p className="text-xs text-slate-500 text-center">© 2024 XPFI Token. All rights reserved.</p>
+>>>>>>> Stashed changes
         </div>
       </div>
 

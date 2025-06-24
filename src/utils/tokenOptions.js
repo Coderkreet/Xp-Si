@@ -1,11 +1,5 @@
 export const tokenOptions = [
-  "Bitcoin",
-  "Ethereum",
-  "Nebulux",
-  "XRP",
-  "Solana",
-  "Litecoin",
-  "Dogecoin",
+  "XPIF"
 ];
 export const tokenOptionsWithIcon = [
   {
@@ -76,7 +70,7 @@ export const fetchTokenDetails = async (coin) => {
 
 export const calculateTokenInUsdtAmount = async (price, usdtAmount, name) => {
   if (price) {
-    const amount = usdtAmount / price;
+    const amount = usdtAmount * price;
     // console.log(
     //   `For ${usdtAmount} USDT, you can buy ${amount.toFixed(6)} ${name}.`
     // );

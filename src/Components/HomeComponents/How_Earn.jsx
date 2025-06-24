@@ -6,14 +6,22 @@ export default function ZCoinEarningGuide() {
       // number: 1,
       title: "Choose Your Investment Plan",
       description: "Browse through our flexible plans — Starter, Bronze, Silver, Gold, or Platinum. Each plan comes with a fixed Monthly ROI, lock-in period, and total ROI.",
+<<<<<<< Updated upstream
       highlight: "Start with as low as 100 XPFI-Coin.",
+=======
+      highlight: "Start with as low as 100 XPFI Token.",
+>>>>>>> Stashed changes
       icon: Search,
       color: "blue"
     },
     {
       // number: 2,
       title: "Invest & Lock-In",
+<<<<<<< Updated upstream
       description: "Once you select your plan, invest your XPFI-Coins and lock in for the chosen duration. Your funds are securely held and start generating monthly returns immediately.",
+=======
+      description: "Once you select your plan, invest your XPFI Tokens and lock in for the chosen duration. Your funds are securely held and start generating monthly returns immediately.",
+>>>>>>> Stashed changes
       icon: Lock,
       color: "green"
     },
@@ -31,7 +39,11 @@ export default function ZCoinEarningGuide() {
   const bonusFeatures = [
     {
       icon: Coins,
+<<<<<<< Updated upstream
       title: "More XPFI-Coins = Higher Monthly ROI",
+=======
+      title: "More XPFI Tokens = Higher Monthly ROI",
+>>>>>>> Stashed changes
       description: "Increase your investment amount for better returns"
     },
     {
@@ -88,7 +100,11 @@ export default function ZCoinEarningGuide() {
             <Wallet className="w-8 h-8 text-yellow-400" />
           </div>
           <h1 className="text-5xl font-bold mb-6 tracking-tight">
+<<<<<<< Updated upstream
             How to Earn with <span className="text-blue-400">XPFI-Coin</span>
+=======
+            How to Earn with <span className="text-blue-400">XPFI Token</span>
+>>>>>>> Stashed changes
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             <strong>Start earning in 3 simple steps. No hassle. Just crypto rewards.</strong>

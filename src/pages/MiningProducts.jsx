@@ -162,9 +162,9 @@ const MiningProducts = ({ className }) => {
     if (!payload?.investment || !payload?.token) {
       return toast.error("Please fill all the required fields!");
     }
-    if (payload?.investment < 100 || payload?.investment > 100000) {
-      return toast.error("Investment amount must be between 100 and 100000 USDT");
-    }
+    // if (payload?.investment < 100 || payload?.investment > 100000) {
+    //   return toast.error("Investment amount must be between 100 and 100000 USDT");
+    // }
     setShowInputModal(false);
     setShowPaymentModal(false);
     sendPurchaseRequest();

@@ -43,7 +43,11 @@ const AboutPretorix = () => {
             <div className="relative mb-8">
               <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-[#2eb4e0] to-cyan-300 rounded-full"></div>
               <h1 className="text-4xl lg:text-7xl md:text-5xl sm:text-3xl font-bold bg-gradient-to-r from-[#2eb4e0] via-cyan-400 to-blue-500 bg-clip-text text-transparent leading-tight ml-8">
+<<<<<<< Updated upstream
                 About XPFI-Coin
+=======
+                About XPFI Token
+>>>>>>> Stashed changes
               </h1>
             </div>
 

@@ -12,7 +12,11 @@ export default function ZCoinLanding() {
     {
       icon: TrendingUp,
       title: "Smart Investment Plans",
+<<<<<<< Updated upstream
       description: "XPFI-Coin is part of the CryptoZ Investment Plan, which means it's designed for consistent growth, passive income opportunities, and long-term returns."
+=======
+      description: "XPFI Token is part of the CryptoZ Investment Plan, which means it's designed for consistent growth, passive income opportunities, and long-term returns."
+>>>>>>> Stashed changes
     },
     {
       icon: Globe,
@@ -22,12 +26,20 @@ export default function ZCoinLanding() {
     {
       icon: Users,
       title: "Community-Driven",
+<<<<<<< Updated upstream
       description: "We believe in the power of community. XPFI-Coin thrives on collective participation, giving users a voice in development, governance, and future updates."
+=======
+      description: "We believe in the power of community. XPFI Token thrives on collective participation, giving users a voice in development, governance, and future updates."
+>>>>>>> Stashed changes
     },
     {
       icon: Rocket,
       title: "Future-Ready",
+<<<<<<< Updated upstream
       description: "XPFI-Coin is built on scalable, future-proof architecture, keeping you ahead in the rapidly evolving crypto world — from DeFi to NFTs and beyond."
+=======
+      description: "XPFI Token is built on scalable, future-proof architecture, keeping you ahead in the rapidly evolving crypto world — from DeFi to NFTs and beyond."
+>>>>>>> Stashed changes
     },
     {
       icon: BookOpen,
@@ -54,10 +66,17 @@ export default function ZCoinLanding() {
             <Lightbulb className="w-8 h-8 text-blue-400" />
           </div>
           <h1 className="text-5xl font-bold mb-6 tracking-tight">
+<<<<<<< Updated upstream
             Why Choose <span className="text-blue-400">XPFI-Coin</span>?
           </h1>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
             XPFI-Coin isn't just another digital currency — it's a{" "}
+=======
+            Why Choose <span className="text-blue-400">XPFI Token</span>?
+          </h1>
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            XPFI Token isn't just another digital currency — it's a{" "}
+>>>>>>> Stashed changes
             <span className="text-blue-400 font-semibold">strategic investment platform</span>{" "}
             built to help you grow, secure, and future-proof your financial journey.
           </p>
@@ -95,7 +114,11 @@ export default function ZCoinLanding() {
               Ready to Start Your Journey?
             </h2>
             <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+<<<<<<< Updated upstream
               Join thousands of investors who have chosen XPFI-Coin as their gateway to the future of finance.
+=======
+              Join thousands of investors who have chosen XPFI Token as their gateway to the future of finance.
+>>>>>>> Stashed changes
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link to={AuthRoutes.LOGIN}>    <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-blue-500/25">

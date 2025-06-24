@@ -15,7 +15,11 @@ import Swal from "sweetalert2";
 import ConversionDetail from "./ConversionDetail";
 import { NumberFormatCommas } from "../utils/FormatText";
 import { getNebuluxData } from "../api/user-api";
+<<<<<<< Updated upstream
 import zCoin from "../assets/icons/zCoin.png"; 
+=======
+import appLogo from '../assets/app/Hello.png'
+>>>>>>> Stashed changes
 
 const SwapConversion = ({ swapHandler }) => {
   const dispatch = useDispatch();
@@ -29,8 +33,8 @@ const SwapConversion = ({ swapHandler }) => {
   const [tokenDetails, setTokenDetails] = useState({
     name: "Tether USDT",
     symbol: "USDT",
-    price: 1,
-    // image: zCoin, // Default image for Z-Coin
+    price: 0.001,
+    // image: zCoin, // Default image for XPFI Token
   });
   const [swapPayload, setSwapPayload] = useState({
     fromValue: 0,
@@ -44,8 +48,8 @@ const SwapConversion = ({ swapHandler }) => {
       const response = await getNebuluxData();
       setNebuluxData(response?.data);
     } catch (error) {
-      console.error("Error fetching Z-Coin data:", error);
-      toast.error("Failed to fetch Z-Coin data.");
+      console.error("Error fetching XPFI Token data:", error);
+      toast.error("Failed to fetch XPFI Token data.");
     }
   };
 
@@ -95,8 +99,8 @@ const SwapConversion = ({ swapHandler }) => {
 
   const oneUsdtInTokenValue = () => {
     const tokenVal = nebuluxData?.price;
-    const amount = 1 / tokenVal;
-    return `1 Z-Coin = ${amount?.toFixed(2)} USDT`;
+    const amount = 1 * tokenVal;
+    return `1 XPFI Token = ${amount?.toFixed(3)} USDT`;
   };
 
   const fetchUserSwapingData = async () => {
@@ -129,7 +133,7 @@ const SwapConversion = ({ swapHandler }) => {
         },
         from: {
           value: swapPayload?.fromValue,
-          token: "Z-Coin",
+          token: "XPFI Token",
         },
         initialValue: tokenDetails?.price,
       });
@@ -148,7 +152,7 @@ const SwapConversion = ({ swapHandler }) => {
           },
           from: {
             value: swapPayload?.fromValue,
-            token: "Z-Coin",
+            token: "XPFI Token",
           },
           initialValue: tokenDetails?.price,
           date: new Date().toLocaleString(),
@@ -199,7 +203,11 @@ const SwapConversion = ({ swapHandler }) => {
               <div className="text-right">
                 <span className="text-sm text-slate-400">Available</span>
                 <div className="text-sm font-medium text-blue-400">
+<<<<<<< Updated upstream
                   <NumberFormatCommas decimalScale={2} value={userSwapingData?.currentIncome || 0} /> XPFI-Coin
+=======
+                  <NumberFormatCommas decimalScale={2} value={userSwapingData?.total || 0} /> XPFI Token
+>>>>>>> Stashed changes
                 </div>
               </div>
             </div>
@@ -208,14 +216,24 @@ const SwapConversion = ({ swapHandler }) => {
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 rounded-full bg-slate-700/50 flex items-center justify-center">
                   <img
+<<<<<<< Updated upstream
                     src={zCoin}
                     alt="XPFI-Coin"
+=======
+                    src={appLogo}
+                    alt="XPFI Token"
+>>>>>>> Stashed changes
                     className="w-10 h-10 rounded-full"
                   />
                 </div>
                 <div>
+<<<<<<< Updated upstream
                   <div className="text-white font-medium">XPFI-Coin</div>
                   <div className="text-slate-400 text-sm">Z Token (Bep20)</div>
+=======
+                  <div className="text-white font-medium">XPFI Token</div>
+                  <div className="text-slate-400 text-sm">XPFI Token (Bep20)</div>
+>>>>>>> Stashed changes
                 </div>
               </div>
               
@@ -315,10 +333,10 @@ const SwapConversion = ({ swapHandler }) => {
                     }
                     setSwapPayload({
                       ...swapPayload,
-                      fromValue: value,
+                      toValue: value,
                     });
                   }}
-                  value={swapPayload?.fromValue}
+                  value={swapPayload?.toValue || 0}
                 />
               </div>
             </div>

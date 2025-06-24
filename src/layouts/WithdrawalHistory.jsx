@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { getAdminWithdrawalHistory, updateWithdrawalStatus } from '../api/admin-api';
-import { formatDateTime } from '../utils/additonalFunc';
+import { formatDateTime, maskTwoLetters } from '../utils/additonalFunc';
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -16,15 +16,12 @@ import {
 import { useDispatch } from 'react-redux';
 import { setLoading } from '../redux/slice/loadingSlice';
 import Swal from 'sweetalert2';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 const WithdrawalHistory = () => {
   const dispatch = useDispatch();
   const [withdrawalHistory, setWithdrawalHistory] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortField, setSortField] = useState("");
-  const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
     fetchWithdrawalHistory();
@@ -41,62 +38,6 @@ const WithdrawalHistory = () => {
       console.error("Error fetching withdrawal history:", error);
     } finally {
       dispatch(setLoading(false));
-    }
-  };
-
-  // Filter and sort data
-  const filteredAndSortedData = useMemo(() => {
-    let filtered = withdrawalHistory?.filter(item => 
-      item?.userId?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item?.transactionId?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item?.amount?.toString().includes(searchTerm)
-    ) || [];
-
-    if (sortField) {
-      filtered.sort((a, b) => {
-        let aValue, bValue;
-        
-        switch (sortField) {
-          case 'name':
-            aValue = a?.userId?.name || '';
-            bValue = b?.userId?.name || '';
-            break;
-          case 'amount':
-            aValue = a?.amount || 0;
-            bValue = b?.amount || 0;
-            break;
-          case 'status':
-            aValue = a?.status || '';
-            bValue = b?.status || '';
-            break;
-          case 'createdAt':
-            aValue = new Date(a?.createdAt || 0);
-            bValue = new Date(b?.createdAt || 0);
-            break;
-          default:
-            return 0;
-        }
-
-        if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
-        if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
-        return 0;
-      });
-    }
-
-    return filtered;
-  }, [withdrawalHistory, searchTerm, sortField, sortOrder]);
-
-  // Pagination
-  const totalPages = Math.ceil(filteredAndSortedData.length / rowsPerPage);
-  const startIndex = (currentPage - 1) * rowsPerPage;
-  const paginatedData = filteredAndSortedData.slice(startIndex, startIndex + rowsPerPage);
-
-  const handleSort = (field) => {
-    if (sortField === field) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortField(field);
-      setSortOrder('asc');
     }
   };
 
@@ -146,6 +87,10 @@ const WithdrawalHistory = () => {
     }
   };
 
+  const serialNumberTemplate = (rowData, options) => {
+    return <span>{options.rowIndex + 1}</span>;
+  };
+
   return (
     <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 min-h-screen p-6">
       {/* Header */}
@@ -157,9 +102,8 @@ const WithdrawalHistory = () => {
       </div>
 
       {/* Controls */}
-      <div className="mb-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
+      {/* <div className="mb-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
         <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-          {/* Search */}
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
             <input
@@ -171,7 +115,6 @@ const WithdrawalHistory = () => {
             />
           </div>
 
-          {/* Rows per page */}
           <div className="flex items-center space-x-2">
             <span className="text-slate-300 text-sm">Show:</span>
             <select
@@ -189,11 +132,11 @@ const WithdrawalHistory = () => {
             <span className="text-slate-300 text-sm">rows</span>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Table */}
       <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl overflow-hidden">
-        {paginatedData?.length > 0 ? (
+        {/* {paginatedData?.length > 0 ? (
           <>
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -368,8 +311,6 @@ const WithdrawalHistory = () => {
                 </tbody>
               </table>
             </div>
-
-            {/* Pagination */}
             <div className="border-t border-slate-700 px-6 py-4">
               <div className="flex items-center justify-between">
                 <div className="text-slate-400 text-sm">
@@ -384,7 +325,7 @@ const WithdrawalHistory = () => {
                     <ChevronLeft size={16} />
                     <span>Previous</span>
                   </button>
-                  
+
                   <div className="flex space-x-1">
                     {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                       const pageNum = i + 1;
@@ -428,7 +369,68 @@ const WithdrawalHistory = () => {
               </p>
             </div>
           </div>
-        )}
+        )} */}
+        <div className="w-full">
+          <DataTable
+            value={withdrawalHistory}
+            className="w-full rounded-xl shadow-md border border-gray-700 bg-gray-800"
+            size="small"
+            paginator
+            rows={15}
+            rowsPerPageOptions={[5, 10, 25, 50]}
+            stripedRows
+            showGridlines
+          >
+            <Column header="S No." body={serialNumberTemplate} />
+
+            <Column
+              header="Name"
+              field="userId.name"
+              sortable
+              filter
+            />
+            <Column
+              header="Email"
+              field="userId.email"
+              filter
+              sortable
+            />
+            <Column
+              header="Number"
+              field="userId.mobile"
+            />
+            <Column
+              header="Wallet Address"
+              field="clientAddress"
+              body={(rowData) => {
+                return maskTwoLetters(rowData.clientAddress);
+              }}
+            />
+            <Column
+              header="Amount ($)"
+              field="amount"
+            />
+            <Column
+              header="Date"
+              field="createdAt"
+              body={(rowData) => {
+                return rowData.createdAt
+                  ? new Date(rowData.createdAt).toLocaleDateString('en-IN', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                  })
+                  : '';
+              }}
+              sortable
+            />
+            <Column
+              header="Action"
+            />
+
+          </DataTable>
+        </div>
+
       </div>
     </div>
   );

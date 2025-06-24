@@ -1,74 +1,58 @@
 /* eslint-disable react/prop-types */
-import { useState, useMemo, useEffect } from "react";
-import PropTypes from 'prop-types';
+import { useState, useMemo } from "react";
 import { PiLockKeyBold, PiLockKeyOpenBold } from "react-icons/pi";
 import { formatDateTime, getMoneySymbol } from "../utils/additonalFunc";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { setLoading } from "../redux/slice/loadingSlice";
 import { changeStatusTOUnlock } from "../api/product-api";
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  Search, 
-  Calendar, 
+import {
+  ChevronLeft,
+  ChevronRight,
+  Search,
+  Calendar,
   DollarSign,
   Hash,
   Tag,
   Activity
 } from "lucide-react";
-import { getPurchasedMiners } from "../api/user-api";
 
-const MinersPurchaseHistory = ({ className }) => {
+const MinersPurchaseHistory = ({ className, fetchData, fetchDataHandler }) => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortField, setSortField] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
-  const [purchasedMiners, setPurchasedMiners] = useState([]);
-  
-  useEffect(() => {
-    fetchPurchasedMiners();
-  }, []);
-
-  const fetchPurchasedMiners = async () => {
-    try {
-      dispatch(setLoading(true));
-      const response = await getPurchasedMiners();
-      if (response.success) {
-        setPurchasedMiners(response.data);
-      }
-    } catch (error) {
-      console.error("Error fetching purchased miners:", error);
-    } finally {
-      dispatch(setLoading(false));
-    }
-  };
 
   // Filter and sort data
   const filteredAndSortedData = useMemo(() => {
-    let filtered = purchasedMiners?.filter(item => 
-      item?.plan?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item?.plan?.price?.toString().includes(searchTerm)
+    let filtered = fetchData?.filter(item =>
+      item?.miner?.minerName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item?.token?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item?.investment?.toString().includes(searchTerm)
     ) || [];
 
     if (sortField) {
       filtered.sort((a, b) => {
         let aValue, bValue;
-        
+
         switch (sortField) {
-          case 'name':
-            aValue = a?.plan?.name || '';
-            bValue = b?.plan?.name || '';
+          case 'minerName':
+            aValue = a?.miner?.minerName || '';
+            bValue = b?.miner?.minerName || '';
             break;
-          case 'price':
-            aValue = a?.plan?.price || 0;
-            bValue = b?.plan?.price || 0;
+          case 'token':
+            aValue = a?.token || '';
+            bValue = b?.token || '';
             break;
-          case 'investmentDate':
-            aValue = new Date(a?.investmentDate || 0);
-            bValue = new Date(b?.investmentDate || 0);
+          case 'investment':
+            aValue = a?.investment || 0;
+            bValue = b?.investment || 0;
+            break;
+          case 'createdAt':
+            aValue = new Date(a?.createdAt || 0);
+            bValue = new Date(b?.createdAt || 0);
             break;
           default:
             return 0;
@@ -81,7 +65,7 @@ const MinersPurchaseHistory = ({ className }) => {
     }
 
     return filtered;
-  }, [purchasedMiners, searchTerm, sortField, sortOrder]);
+  }, [fetchData, searchTerm, sortField, sortOrder]);
 
   // Pagination
   const totalPages = Math.ceil(filteredAndSortedData.length / rowsPerPage);
@@ -123,7 +107,7 @@ const MinersPurchaseHistory = ({ className }) => {
           text: "You have successfully unlocked this plan",
           timer: 3000,
         }).then(() => {
-          fetchPurchasedMiners();
+          fetchDataHandler();
         });
       }
     });
@@ -195,7 +179,7 @@ const MinersPurchaseHistory = ({ className }) => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
               <input
                 type="text"
-                placeholder="Search by plan name or amount..."
+                placeholder="Search miners, tokens, or amounts..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
@@ -224,7 +208,7 @@ const MinersPurchaseHistory = ({ className }) => {
 
         {/* Table */}
         <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl overflow-hidden">
-          {paginatedData?.length > 0 ? (
+          {paginatedData.length > 0 ? (
             <>
               <div className="overflow-x-auto">
                 <table className="w-full">
@@ -237,13 +221,18 @@ const MinersPurchaseHistory = ({ className }) => {
                         </div>
                       </th>
                       <th className="px-6 py-4 text-left">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-slate-300 font-semibold text-sm">Image</span>
+                        </div>
+                      </th>
+                      <th className="px-6 py-4 text-left">
                         <button
-                          onClick={() => handleSort('name')}
+                          onClick={() => handleSort('minerName')}
                           className="flex items-center space-x-2 hover:text-blue-400 transition-colors"
                         >
                           <Tag size={16} className="text-slate-400" />
-                          <span className="text-slate-300 font-semibold text-sm">Plan Name</span>
-                          {sortField === 'name' && (
+                          <span className="text-slate-300 font-semibold text-sm">Name</span>
+                          {sortField === 'minerName' && (
                             <span className="text-blue-400">
                               {sortOrder === 'asc' ? '↑' : '↓'}
                             </span>
@@ -252,12 +241,25 @@ const MinersPurchaseHistory = ({ className }) => {
                       </th>
                       <th className="px-6 py-4 text-left">
                         <button
-                          onClick={() => handleSort('price')}
+                          onClick={() => handleSort('token')}
+                          className="flex items-center space-x-2 hover:text-blue-400 transition-colors"
+                        >
+                          <span className="text-slate-300 font-semibold text-sm">Token</span>
+                          {sortField === 'token' && (
+                            <span className="text-blue-400">
+                              {sortOrder === 'asc' ? '↑' : '↓'}
+                            </span>
+                          )}
+                        </button>
+                      </th>
+                      <th className="px-6 py-4 text-left">
+                        <button
+                          onClick={() => handleSort('investment')}
                           className="flex items-center space-x-2 hover:text-blue-400 transition-colors"
                         >
                           <DollarSign size={16} className="text-slate-400" />
-                          <span className="text-slate-300 font-semibold text-sm">Investment</span>
-                          {sortField === 'price' && (
+                          <span className="text-slate-300 font-semibold text-sm">Amount</span>
+                          {sortField === 'investment' && (
                             <span className="text-blue-400">
                               {sortOrder === 'asc' ? '↑' : '↓'}
                             </span>
@@ -272,30 +274,24 @@ const MinersPurchaseHistory = ({ className }) => {
                       </th>
                       <th className="px-6 py-4 text-left">
                         <button
-                          onClick={() => handleSort('investmentDate')}
+                          onClick={() => handleSort('createdAt')}
                           className="flex items-center space-x-2 hover:text-blue-400 transition-colors"
                         >
                           <Calendar size={16} className="text-slate-400" />
-                          <span className="text-slate-300 font-semibold text-sm">Purchase Date</span>
-                          {sortField === 'investmentDate' && (
+                          <span className="text-slate-300 font-semibold text-sm">Date</span>
+                          {sortField === 'createdAt' && (
                             <span className="text-blue-400">
                               {sortOrder === 'asc' ? '↑' : '↓'}
                             </span>
                           )}
                         </button>
                       </th>
-                      <th className="px-6 py-4 text-left">
-                        <div className="flex items-center space-x-2">
-                          <Calendar size={16} className="text-slate-400" />
-                          <span className="text-slate-300 font-semibold text-sm">Lock-in Period</span>
-                        </div>
-                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {paginatedData.map((item, index) => (
                       <tr
-                        key={item._id}
+                        key={index}
                         className="border-t border-slate-700 hover:bg-slate-700/30 transition-colors"
                       >
                         <td className="px-6 py-4">
@@ -304,17 +300,31 @@ const MinersPurchaseHistory = ({ className }) => {
                           </span>
                         </td>
                         <td className="px-6 py-4">
+                          <div className="w-12 h-12 bg-slate-700 rounded-lg overflow-hidden border border-slate-600">
+                            <img
+                              src={item?.miner?.image}
+                              alt={item?.miner?.minerName}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
                           <span className="text-slate-200 font-medium">
-                            {item.plan.name}
+                            {item?.miner?.minerName}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className="bg-blue-600/20 text-blue-300 px-3 py-1 rounded-full text-sm font-medium">
+                            {item?.token}
                           </span>
                         </td>
                         <td className="px-6 py-4">
                           <div className="space-y-1">
                             <div className="text-slate-200 font-semibold">
-                              {getMoneySymbol()}{item.plan.price?.toFixed(2)}
+                              {getMoneySymbol()}{item?.investment?.toFixed(2)}
                             </div>
                             <div className="text-green-400 text-sm">
-                              ROI: {item.plan.monthlyROIpercentage}% monthly
+                              +{item?.earning?.toFixed(2)} tokens
                             </div>
                           </div>
                         </td>
@@ -323,12 +333,7 @@ const MinersPurchaseHistory = ({ className }) => {
                         </td>
                         <td className="px-6 py-4">
                           <span className="text-slate-300 text-sm">
-                            {formatDateTime(item.investmentDate)}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4">
-                          <span className="text-slate-300 text-sm">
-                            {formatDateTime(item.lockinPeriod)}
+                            {formatDateTime(item?.createdAt)}
                           </span>
                         </td>
                       </tr>
@@ -352,7 +357,7 @@ const MinersPurchaseHistory = ({ className }) => {
                       <ChevronLeft size={16} />
                       <span>Previous</span>
                     </button>
-                    
+
                     <div className="flex space-x-1">
                       {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                         const pageNum = i + 1;
@@ -360,11 +365,10 @@ const MinersPurchaseHistory = ({ className }) => {
                           <button
                             key={pageNum}
                             onClick={() => setCurrentPage(pageNum)}
-                            className={`px-3 py-2 rounded-lg transition-colors ${
-                              currentPage === pageNum
+                            className={`px-3 py-2 rounded-lg transition-colors ${currentPage === pageNum
                                 ? 'bg-blue-600 text-white'
                                 : 'bg-slate-700 hover:bg-slate-600 text-slate-300'
-                            }`}
+                              }`}
                           >
                             {pageNum}
                           </button>
@@ -399,17 +403,8 @@ const MinersPurchaseHistory = ({ className }) => {
           )}
         </div>
       </div>
-      
     </div>
   );
-};
-
-MinersPurchaseHistory.propTypes = {
-  className: PropTypes.string
-};
-
-MinersPurchaseHistory.defaultProps = {
-  className: ''
 };
 
 export default MinersPurchaseHistory;

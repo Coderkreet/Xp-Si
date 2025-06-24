@@ -3,6 +3,7 @@ import { Plus, Minus, Mail } from "lucide-react";
 
 const faqs = [
   {
+<<<<<<< Updated upstream
     question: "What is XPFI-Coin?",
     answer: "XPFI-Coin is a digital investment token powered by the CryptoZ Investment Plan, offering fixed monthly returns, secure blockchain-backed transactions, and multiple earning opportunities.",
   },
@@ -13,6 +14,18 @@ const faqs = [
   {
     question: "What is the minimum amount required to invest?",
     answer: "You can start investing with as little as 100 XPFI-Coin under the Starter Plan, making it accessible for beginners.",
+=======
+    question: "What is XPFI Token?",
+    answer: "XPFI Token is a digital investment token powered by the CryptoZ Investment Plan, offering fixed monthly returns, secure blockchain-backed transactions, and multiple earning opportunities.",
+  },
+  {
+    question: "How do I start investing in XPFI Token?",
+    answer: "Simply register on the platform, choose an investment plan (Starter to Platinum), deposit the required XPFI Token amount, and your plan will activate immediately.",
+  },
+  {
+    question: "What is the minimum amount required to invest?",
+    answer: "You can start investing with as little as 100 XPFI Token under the Starter Plan, making it accessible for beginners.",
+>>>>>>> Stashed changes
   },
   {
     question: "How much return will I earn?",
@@ -28,11 +41,19 @@ const faqs = [
   },
   {
     question: "How is my investment secured?",
+<<<<<<< Updated upstream
     answer: "XPFI-Coin uses advanced blockchain encryption, decentralized smart contracts, and secure wallet integrations to protect your funds and data.",
   },
   {
     question: "Is XPFI-Coin suitable for beginners?",
     answer: "Absolutely! XPFI-Coin is designed with a user-friendly interface and flexible entry points, making it ideal for both beginners and seasoned crypto investors.",
+=======
+    answer: "XPFI Token uses advanced blockchain encryption, decentralized smart contracts, and secure wallet integrations to protect your funds and data.",
+  },
+  {
+    question: "Is XPFI Token suitable for beginners?",
+    answer: "Absolutely! XPFI Token is designed with a user-friendly interface and flexible entry points, making it ideal for both beginners and seasoned crypto investors.",
+>>>>>>> Stashed changes
   },
   {
     question: "Are there any hidden charges or fees?",
@@ -53,7 +74,11 @@ const FAQSection = () => {
 
   const handleContactSupport = () => {
     const email = "zcoinworld7@gmail.com"; // Replace with your actual support email
+<<<<<<< Updated upstream
     const subject = "XPFI-Coin Support Request";
+=======
+    const subject = "XPFI Token Support Request";
+>>>>>>> Stashed changes
     const body = "Hello Support Team,\n\nI need assistance with:";
     
     const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

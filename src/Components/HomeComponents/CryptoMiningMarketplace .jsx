@@ -80,7 +80,11 @@ const CryptoMiningMarketplace = () => {
     {
       id: 6,
       name: 'NebulaBoost',
+<<<<<<< Updated upstream
       coin: 'XPFI-Coin',
+=======
+      coin: 'XPFI Token',
+>>>>>>> Stashed changes
       symbol: '⧫',
       color: '#6C5CE7',
       hashrate: '0.8',

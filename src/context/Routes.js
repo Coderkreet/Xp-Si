@@ -22,7 +22,11 @@ export const AuthenticatedRoutes = {
   SETTINGS: "/settings",
   HELP: "/help",
   MARKET: "/market",
+<<<<<<< Updated upstream
   NEBULUX_COIN: "/",
+=======
+  NEBULUX_COIN: "/xpfi-coin",
+>>>>>>> Stashed changes
   MARKET_DETAIL: "/coin-details",
   TRADING: "/trading",
   OUR_PLANS: "/our-plans",

@@ -76,7 +76,7 @@ export default function NebuluxCoin() {
     }
 
     try {
-      const res = await purchaseNebuluxCoin({ amount: data?.amount, recipientAddress: data?.recipientAddress, userAddress: data?.userAddress, txResponse: data?.txResponse });
+      const res = await purchaseNebuluxCoin({ amount: amount, recipientAddress: data?.recipientAddress, userAddress: data?.userAddress, txResponse: data?.txResponse });
 
       if (res.success) {
         setPurchaseSuccess("Purchase successful!");
@@ -258,10 +258,8 @@ export default function NebuluxCoin() {
     <div className="min-h-screen bg-gray-900">
       <div className="p-6 max-w-7xl mx-auto text-white">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-black mb-4 text-white">
-            <span className="text-4xl"> <img src={lOGO} width={100} height={100} alt="XPFI-Coin  Logo" /></span> XPFI-Coin 
-          </h1>
+        <div className="text-center mb-16 flex flex-col items-center gap-5">
+          <img src={lOGO} width={100} height={100} alt="XPFI-Coin  Logo" />
           <p className="text-xl text-gray-300 font-light">
             Explore the cosmos of cryptocurrency
           </p>
@@ -403,7 +401,6 @@ export default function NebuluxCoin() {
                   header="S No."
                   body={serialNumberTemplate}
                   style={{ width: '60px', textAlign: 'center' }}
-                  headerClassName="text-center"
                 />
 
                 <Column
@@ -414,8 +411,6 @@ export default function NebuluxCoin() {
                       {rowData.quantity} Coins
                     </span>
                   )}
-                  style={{ textAlign: 'center' }}
-                  headerClassName="text-center"
                   sortable
                 />
 
@@ -427,8 +422,6 @@ export default function NebuluxCoin() {
                       ${rowData.totalPrice?.toFixed(2) ?? '0.00'}
                     </span>
                   )}
-                  style={{ textAlign: 'center' }}
-                  headerClassName="text-center"
                   sortable
                 />
 
@@ -436,7 +429,7 @@ export default function NebuluxCoin() {
                   field="purchaseDate"
                   header="Purchase Date"
                   body={(rowData) => (
-                    <span className="text-gray-300">
+                    <span className="text-gray-600">
                       {new Date(rowData.purchaseDate).toLocaleDateString('en-IN', {
                         day: '2-digit',
                         month: 'short',
@@ -444,8 +437,6 @@ export default function NebuluxCoin() {
                       })}
                     </span>
                   )}
-                  style={{ textAlign: 'center' }}
-                  headerClassName="text-center"
                   sortable
                 />
               </DataTable>

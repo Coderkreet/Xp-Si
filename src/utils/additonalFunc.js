@@ -58,8 +58,8 @@ export const maskTwoLetters = (walletAddress) => {
     return walletAddress;
   }
 
-  const firstFourChars = walletAddress.slice(0, 2);
-  const lastFourChars = walletAddress.slice(-2);
+  const firstFourChars = walletAddress.slice(0, 4);
+  const lastFourChars = walletAddress.slice(-4);
   const maskedChars = "*".repeat(4);
 
   return `${firstFourChars}${maskedChars}${lastFourChars}`;

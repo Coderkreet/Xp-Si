@@ -71,7 +71,11 @@ export default function ZCoinKeyFeatures() {
       icon: Zap,
       title: "Instant Plan Activation",
       highlight: "Start earning immediately",
+<<<<<<< Updated upstream
       description: "Choose a plan, invest XPFI-Coins, and start earning immediately — no complicated setup or waiting.",
+=======
+      description: "Choose a plan, invest XPFI Tokens, and start earning immediately — no complicated setup or waiting.",
+>>>>>>> Stashed changes
       color: "cyan",
       colorClasses: {
         bg: "bg-cyan-600 bg-opacity-20",
@@ -97,7 +101,11 @@ export default function ZCoinKeyFeatures() {
       icon: Globe,
       title: "Decentralized & User-Focused",
       highlight: "Trustless, transparent ecosystem",
+<<<<<<< Updated upstream
       description: "No middlemen, no hidden fees — XPFI-Coin operates on a trustless, transparent ecosystem designed for investors.",
+=======
+      description: "No middlemen, no hidden fees — XPFI Token operates on a trustless, transparent ecosystem designed for investors.",
+>>>>>>> Stashed changes
       color: "indigo",
       colorClasses: {
         bg: "bg-indigo-600 bg-opacity-20",
@@ -126,10 +134,17 @@ export default function ZCoinKeyFeatures() {
             <Star className="w-8 h-8 text-yellow-400" />
           </div>
           <h1 className="text-5xl font-bold mb-6 tracking-tight">
+<<<<<<< Updated upstream
             Key Features of <span className="text-blue-400">XPFI-Coin</span> Investment Plans
           </h1>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
             XPFI-Coin is not just an investment — it's a well-structured, reward-driven crypto opportunity tailored for every type of investor. Here's what makes XPFI-Coin plans stand out:
+=======
+            Key Features of <span className="text-blue-400">XPFI Token</span> Investment Plans
+          </h1>
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            XPFI Token is not just an investment — it's a well-structured, reward-driven crypto opportunity tailored for every type of investor. Here's what makes XPFI Token plans stand out:
+>>>>>>> Stashed changes
           </p>
         </div>
 
